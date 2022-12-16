@@ -39,18 +39,19 @@
 
   const optArticleSelector = '.post',
     optTitleSelector = '.post-title',
-    optArticleTagsSelector = '.post-tags .list',
+    optArticleTagsSelector = '.post-tags',
     optTitleListSelector = '.titles';
 
 
   // eslint-disable-next-line no-inner-declarations
-  function generateTitleLinks(){
+  function generateTitleLinks(customSelector =''){
 
     /* remove contents of titleList */
     const titleList = document.querySelector(optTitleListSelector);
     titleList.innerHTML = '';
     /* for each article */
-    const articles = document.querySelectorAll(optArticleSelector);
+    const articles = document.querySelectorAll(optArticleSelector + customSelector);
+    console.log(optArticleSelector + customSelector);
     let html = '';
     for(let article of articles){
       /* get the article id */
@@ -75,9 +76,11 @@
       link.addEventListener('click', titleClickHandler);
     }
 
+
   }
 
   generateTitleLinks();
+
 
 
 
@@ -89,7 +92,7 @@
 
     /* START LOOP: for every article: */
     for(let article of articles){
-      const tagsList = article.querySelector('.post-tags');
+      const tagsList = article.querySelector(optArticleTagsSelector);
 
       let htmlTag = '';
       const tags = article.getAttribute('data-tags');
@@ -97,7 +100,7 @@
       const splitTags = tags.split(' ');
 
       for(let splitTag of splitTags){
-        const tagHTML = '<li><a href="#tag-' +splitTag + '">' + splitTag + '</a></li>';
+        const tagHTML = '<li><a href="#tag-' + splitTag + '">' +  splitTag  + '</a></li>';
 
         htmlTag = htmlTag + tagHTML;
 
@@ -165,7 +168,8 @@
 
     /* execute function "generateTitleLinks" with article selector as argument */
     generateTitleLinks('[data-tags~="' + tag + '"]');
-    console.log('funkcjaodpalona');
+    console.log('zakończona');
+
 
   }
 
@@ -178,7 +182,7 @@
     /* START LOOP: for each link */
     for(let link of links){
       link.addEventListener('click', tagClickHandler);
-      console.log(link);
+      console.log('linki to' + link);
     }
     /* add tagClickHandler as event listener for that link */
 
@@ -186,6 +190,7 @@
   }
 
   addClickListenersToTags();
+
 
 
 }
