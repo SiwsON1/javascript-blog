@@ -218,7 +218,7 @@
         count: allTags[tag],
         className: calculateTagClass(allTags[tag], tagsParams)
       });
-
+      console.log('stare to' + tag);
     }
     /* [NEW] END LOOP: for each tag in allTags: */
 
@@ -275,11 +275,11 @@
 
       tagsList.innerHTML = htmlTag;
       /* [NEW] check if this link is NOT already in allTags */
-      if(!allAuthors[tagHTML]) {
+      if(!allAuthors[tags]) {
         /* [NEW] add tag to allTags object */
-        allAuthors[tagHTML] = 1;
+        allAuthors[tags] = 1;
       } else {
-        allAuthors[tagHTML]++;
+        allAuthors[tags]++;
       }
       /* [NEW] find list of tags in right column */
       const tagList = document.querySelector('.authors');
@@ -295,6 +295,7 @@
         allAuthorsData.authors.push({
           author: tag,
           count: allAuthors[tag],
+
 
         },
         console.log('nowe to'+ tag + allAuthors[tag])
